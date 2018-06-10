@@ -1,3 +1,8 @@
+#-*-coding:UTF-8-*-
+import sys
+reload(sys)
+sys.setdefaultencoding('UTF-8')
+
 from django.db import models
 from monitor import auth
 from django.utils.translation import ugettext_lazy as _
@@ -178,18 +183,20 @@ class EventLog(models.Model):
     def __str__(self):
         return "host%s  %s" %(self.host , self.log)
 
-class UserProfile(auth.AbstractBaseUser, auth.PermissionsMixin):
+class UserProfile(auth.PermissionsMixin, auth.AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
 
     )
-    password = models.CharField(_('password'), max_length=128,
-                                help_text=mark_safe('''<a class='btn-link' href='password'>重置密码</a>'''))
+    #password = models.CharField(_('password'), max_length=128, help_text=mark_safe('''<a class='btn-link' href='password'>重置密码</a>'''))
+    #password = models.CharField(max_length=128, help_text=mark_safe('''<a class='btn-link' href='password'>重置密码</a>'''))
+
     phone = models.BigIntegerField(blank=True,null=True)
     weixin = models.CharField(max_length=64,blank=True,null=True)
     is_active = models.BooleanField(default=True)
+    #is_superuser = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(
         verbose_name='staff status',
@@ -226,11 +233,11 @@ class UserProfile(auth.AbstractBaseUser, auth.PermissionsMixin):
         return True
 
 
-    @property
-    def is_superuser(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
+    # @property
+    # def is_superuser(self):
+    #     "Is the user a member of staff?"
+    #     # Simplest possible answer: All admins are staff
+    #     return self.is_admin
 
 
     objects = auth.UserManager()

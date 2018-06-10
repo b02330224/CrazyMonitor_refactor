@@ -13,13 +13,15 @@ def monitor(frist_invoke=1):
     else:
         value_dic = {}
         #print('---res:',result)
-        user,nice,system,idle = result.split()[1:]
+        user,nice,system,iowait,steal,idle = result.split()[2:]
         value_dic= {
             'user': user,
             'nice': nice,
             'system': system,
-            'idle': idle,
-            'status': status
+            'iowait': iowait,
+            'steal': steal,
+            'idle': idle
+
         }
     return value_dic
 

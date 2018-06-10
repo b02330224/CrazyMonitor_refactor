@@ -1,3 +1,4 @@
+#-*-coding:UTF-8-*-
 """
 Django settings for CrazyMonitor project.
 
@@ -9,7 +10,10 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
+#-*-coding:UTF-8-*-
+import sys
+reload(sys)
+sys.setdefaultencoding('UTF-8')
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -80,7 +84,7 @@ WSGI_APPLICATION = 'CrazyMonitor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'monitor_db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'monitor_db_old.sqlite3'),
     }
 }
 
@@ -143,7 +147,7 @@ STATICFILES_DIRS = (
 AUTH_USER_MODEL = 'monitor.UserProfile'
 
 REDIS_CONN = {
-    'HOST': 'localhost',
+    'HOST': '192.168.12.133',
     'PORT': 6379,
     'PASSWD':''
 }

@@ -113,7 +113,7 @@ class ActionHandler(object):
             trigger_id = self.trigger_data.get('trigger_id')
             host_id = self.trigger_data.get('host_id')
             trigger_obj = models.Trigger.objects.get(id=trigger_id)
-            actions_set = trigger_obj.action_set.select_related() #找到这个trigger所关联的action list
+            actions_set = trigger_obj.action_set.select_related() #找到这个trimonitor_serviceindexgger所关联的action list
             print("actions_set:",actions_set)
             matched_action_list = set() # 一个空集合
             for action in actions_set:
